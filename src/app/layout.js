@@ -1,7 +1,38 @@
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Montserrat, Roboto, Merienda, Barlow_Condensed} from "next/font/google";
 import "./globals.css";
+import Navbar from "../components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-inter",
+});
+const barlow = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["300", "400", "500","600", "700", "800"],
+  variable: "--font-barlow",
+});
+const marienda = Merienda({
+  subsets: ["latin"],
+  weight: ["300", "400", "500","600", "700", "800"],
+  variable: "--font-marienda",
+});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jakarta",
+});
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "700"],
+  variable: "--font-montserrat",
+});
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +42,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <body className={`${inter.variable} ${jakarta.variable} ${montserrat.variable} ${roboto.variable} ${barlow.variable} relative  bg-fixed bg-cover bg-center`} style={{ backgroundImage: "url('/images/bg.jpg')" }}>
+      {/* White overlay */}
+      <div className="absolute inset-0 bg-sky-700 opacity-30 h-full pointer-events-none"></div>
+
+      {/* Navbar and content */}
+      <div className="relative z-10">
+        <Navbar/>
+        {children}
+      </div>
+    </body>
+  </html>
   );
 }
